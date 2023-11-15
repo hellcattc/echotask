@@ -1,5 +1,5 @@
-import { Button } from '@/components/layout/UI'
-import Input from '@/components/layout/UI/Input'
+import { Button } from '@/components/UI'
+import Input from '@/components/UI/Input'
 import useBackNavigate from '@/hooks/useBackNavigate'
 import { useAppDispatch, useAppSelector } from '@/store/hooks'
 import { addTask } from '@/store/slices/taskSlice'

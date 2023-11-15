@@ -1,5 +1,5 @@
-import TaskList from '@/components/layout/Task/TaskList'
-import { Button, Text } from '@/components/layout/UI'
+import TaskList from '@/components/Task/TaskList'
+import { Button, Text } from '@/components/UI'
 import { useRef, useCallback } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
 
