@@ -6,6 +6,7 @@ import Root from './routes/Root'
 import Layout from './routes/Layout'
 import { Provider } from 'react-redux'
 import store from './store/store'
+import AddTask from './routes/AddTask/AddTask'
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,7 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Root />,
+        children: [{ path: '/add_task', element: <AddTask /> }],
       },
     ],
   },

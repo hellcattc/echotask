@@ -1,7 +1,9 @@
-import { Task } from '@/types/Data'
 import TaskComponent from './Task'
+import { useAppSelector } from '@/store/hooks'
 
-const TaskList = ({ tasks }: { tasks: Task[] }) => {
+const TaskList = () => {
+  const tasks = useAppSelector((state) => state.taskReducer)
+
   const Tasks = tasks.map((task) => {
     return <TaskComponent task={task} key={task.id} />
   })

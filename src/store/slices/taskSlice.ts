@@ -13,8 +13,8 @@ export const taskSlice = createSlice({
   name: 'tasks',
   initialState,
   reducers: {
-    addTask: (state, action) => {
-      state.push(action.payload.task)
+    addTask: (state, action: { type: string; payload: Task }) => {
+      state.push(action.payload)
     },
     removeTaskById: (state, action) => {
       const i = state.findIndex((task) => task.id === action.payload.id)
@@ -29,3 +29,6 @@ export const taskSlice = createSlice({
     },
   },
 })
+
+export const { addTask, removeTaskById, updateTaskById } = taskSlice.actions
+export default taskSlice.reducer

@@ -1,7 +1,7 @@
 interface Task {
   id: number
-  header: string
-  content: string
+  header: string | undefined
+  content: string | undefined
 }
 
 export type { Task }
