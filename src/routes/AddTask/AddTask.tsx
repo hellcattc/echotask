@@ -52,12 +52,12 @@ const AddTask = () => {
         >
           <Input
             placeholder="Заголовок..."
-            className="block mb-6 p-2 pl-4"
+            className="block mb-6 p-2 pl-4 w-fit"
             ref={headerRef}
           ></Input>
           <Input
             placeholder=""
-            className="block w-full h-40"
+            className="block w-full h-40 break-before-auto"
             ref={contentRef}
           ></Input>
           <Button className="mt-6">Создать таск</Button>
