@@ -1,7 +1,7 @@
-import { Task } from '@/types/Data'
+import { ITask } from '@/types/Data'
 import { Text } from '../UI'
 
-const Task = ({ task }: { task: Task }) => {
+const Task = ({ task }: { task: ITask }) => {
   return (
     <div className="p-8 h-fit rounded-xl border-4 border-orange-500 resize">
       <Text className="text-2xl break-words">{task.header}</Text>

@@ -1,7 +1,9 @@
 import { ForwardedRef, GenericProps } from '@/types/UI'
 import { forwardRef } from 'react'
 
-interface ButtonProps extends GenericProps<HTMLButtonElement> {}
+interface ButtonProps extends GenericProps<HTMLButtonElement> {
+  type?: 'button' | 'submit' | 'reset'
+}
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ children, className, ...props }, ref: ForwardedRef<HTMLButtonElement>) => {

@@ -1,7 +1,7 @@
-import { Task } from '@/types/Data'
+import { ITask } from '@/types/Data'
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState: Task[] = [
+const initialState: ITask[] = [
   {
     id: 1,
     header: 'hello',
@@ -13,7 +13,7 @@ export const taskSlice = createSlice({
   name: 'tasks',
   initialState,
   reducers: {
-    addTask: (state, action: { type: string; payload: Task }) => {
+    addTask: (state, action: { type: string; payload: ITask }) => {
       state.push(action.payload)
     },
     removeTaskById: (state, action) => {
