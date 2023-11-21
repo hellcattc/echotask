@@ -3,17 +3,10 @@ import Input from '@/components/UI/Input'
 import useBackNavigate from '@/hooks/useBackNavigate'
 import { useAppDispatch, useAppSelector } from '@/store/hooks'
 import { addTask } from '@/store/slices/taskSlice'
-import {
-  MouseEvent,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react'
-import { debounce } from '@/utils/common'
+import { MouseEvent, useCallback, useEffect, useRef, useState } from 'react'
 import IconCheck from '@/components/UI/SVG/Check'
 import IconCancel from '@/components/UI/SVG/Close'
+import useDebounce from '@/hooks/useDebounce'
 
 const DEBOUNCE_DELAY = 500
 
@@ -28,15 +21,17 @@ const AddTask = () => {
 
   const [acceptable, setAcceptable] = useState(false)
 
-  const debouncedCheck = useMemo(() => {
-    return debounce(() => {
+  const debouncedCheck = useDebounce(
+    () => {
       if (headerRef.current?.value === '' && contentRef.current?.value === '') {
         setAcceptable(false)
       } else {
         setAcceptable(true)
       }
-    }, DEBOUNCE_DELAY)
-  }, [setAcceptable])
+    },
+    DEBOUNCE_DELAY,
+    [setAcceptable],
+  )
 
   useEffect(() => {
     const headerChangeHandler = () => {

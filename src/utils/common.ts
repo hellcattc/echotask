@@ -15,3 +15,4 @@ const debounce = <T extends (...args: unknown[]) => void>(
 }
 
 export { debounce }
+export type { SomeFn, DebouncedFn }
