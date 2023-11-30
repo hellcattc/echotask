@@ -22,6 +22,6 @@
     "baseUrl": ".",
     "paths": { "@/*": ["./src/*"] }
   },
-  "include": ["src"],
+  "include": ["src", "src/components/UI/index.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

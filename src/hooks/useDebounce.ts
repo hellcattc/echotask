@@ -1,15 +1,15 @@
 import { SomeFn, debounce } from '@/utils/common'
-import { DependencyList, useCallback, useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 
-const useDebounce = <T extends SomeFn>(
-  fn: T,
-  timeout: number,
-  deps: DependencyList,
-) => {
-  const cb = useCallback(fn, [fn, ...deps])
+const useDebounce = <T extends SomeFn>(fn: T, timeout: number) => {
   const debounced = useMemo(() => {
-    return debounce(cb, timeout)
-  }, [timeout, cb])
+    return debounce(fn, timeout)
+  }, [fn, timeout])
+
+  useEffect(() => {
+    return () => debounced.cancel()
+  }, [debounced])
+
   return debounced
 }
 

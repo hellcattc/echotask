@@ -5,6 +5,11 @@ const store = configureStore({
   reducer: { taskReducer },
 })
 
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
+type AppDispatch = typeof store.dispatch
+type RootState = ReturnType<typeof store.getState>
+type Actions = Parameters<AppDispatch>
+
+export type { RootState }
+export type { AppDispatch }
+export type { Actions }
 export default store

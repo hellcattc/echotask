@@ -1,7 +1,15 @@
-import { ITask } from '@/types/Data'
+import { TaskStored } from '@/types/Data'
 import { Text } from '../UI'
+import { useNavigate } from 'react-router-dom'
+import { useCallback } from 'react'
 
-const Task = ({ task }: { task: ITask }) => {
+const Task = ({ task }: { task: TaskStored }) => {
+  const navigate = useNavigate()
+
+  const toEditTask = useCallback(() => {
+    navigate(`edit_task/${task.id}`)
+  }, [task])
+
   return (
     <div className="p-8 h-fit rounded-xl border-4 border-orange-500 resize">
       <Text className="text-2xl break-words">{task.header}</Text>
@@ -10,6 +18,9 @@ const Task = ({ task }: { task: ITask }) => {
           {task.content}
         </Text>
       )}
+      <p className="m-0 float-right" onClick={toEditTask}>
+        Edit
+      </p>
     </div>
   )
 }

@@ -1,7 +1,7 @@
-import { ITask } from '@/types/Data'
+import { TaskInput, TaskStored } from '@/types/Data'
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState: ITask[] = [
+const initialState: TaskStored[] = [
   {
     id: 1,
     header: 'hello',
@@ -13,22 +13,37 @@ export const taskSlice = createSlice({
   name: 'tasks',
   initialState,
   reducers: {
-    addTask: (state, action: { type: string; payload: ITask }) => {
-      state.push(action.payload)
+    addTask: (state, action: { type: string; payload: TaskInput }) => {
+      const newId = state[state.length - 1].id + 1
+      state.push({ ...action.payload, id: newId })
     },
-    removeTaskById: (state, action) => {
+    removeTaskById: (
+      state,
+      action: { type: string; payload: { id: number } },
+    ) => {
       const i = state.findIndex((task) => task.id === action.payload.id)
       state.splice(i, 1)
     },
-    updateTaskById: (state, action) => {
+    updateTaskById: (
+      state,
+      action: { type: string; payload: TaskInput & { id: number } },
+    ) => {
       const i = state.findIndex((task) => task.id === action.payload.id)
-      const task = { ...state[i] }
-      task.header = action.payload.header
-      task.content = action.payload.content
-      state.splice(i, 1, task)
+      if (i == -1) {
+        return
+      }
+      state[i].content = action.payload.content
+      state[i].header = action.payload.header
     },
   },
 })
 
+type SliceActions<T> = {
+  [K in keyof T]: T[K] extends (...args: any[]) => infer A ? A : never
+}[keyof T]
+
+type ActionTypes = SliceActions<typeof taskSlice.actions>
+
+export type { ActionTypes }
 export const { addTask, removeTaskById, updateTaskById } = taskSlice.actions
 export default taskSlice.reducer

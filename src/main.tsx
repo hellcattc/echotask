@@ -9,6 +9,7 @@ import store from './store/store'
 import AddTask from './routes/AddTask/AddTask'
 import CreateTemplate from './routes/AddTemplate/CreateTemplate'
 import ROUTES from './types/Routes'
+import EditTask from './routes/EditTask/EditTask'
 
 const router = createBrowserRouter([
   {
@@ -17,7 +18,10 @@ const router = createBrowserRouter([
       {
         path: ROUTES.INDEX.path,
         element: <Root />,
-        children: [{ path: ROUTES.INDEX.ADD_TASK.path, element: <AddTask /> }],
+        children: [
+          { path: ROUTES.INDEX.ADD_TASK.path, element: <AddTask /> },
+          { path: ROUTES.INDEX.EDIT_TASK.path, element: <EditTask /> },
+        ],
       },
       {
         path: ROUTES.CREATE_TEMPLATE.path,
