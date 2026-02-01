@@ -2,13 +2,14 @@ import { TaskStored } from '@/types/Data'
 import { Text } from '../UI'
 import { useNavigate } from 'react-router-dom'
 import { useCallback } from 'react'
+import Edit from '../UI/SVG/Edit'
 
 const Task = ({ task }: { task: TaskStored }) => {
   const navigate = useNavigate()
 
   const toEditTask = useCallback(() => {
     navigate(`edit_task/${task.id}`)
-  }, [task])
+  }, [navigate, task])
 
   return (
     <div className="p-8 h-fit rounded-xl border-4 border-orange-500 resize">
@@ -18,9 +19,7 @@ const Task = ({ task }: { task: TaskStored }) => {
           {task.content}
         </Text>
       )}
-      <p className="m-0 float-right" onClick={toEditTask}>
-        Edit
-      </p>
+      <Edit onClick={toEditTask} className="hover:cursor-pointer float-right" />
     </div>
   )
 }

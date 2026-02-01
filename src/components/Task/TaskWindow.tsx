@@ -72,9 +72,12 @@ const TaskWindowExposed = forwardRef<ContentHandle, TaskWindowProps>(
     }, [debouncedCheck])
 
     useLayoutEffect(() => {
-      headerRef.current!.value = initialHeader ?? ''
-      contentRef.current!.value = initialContent ?? ''
-    }, [])
+			if (initialHeader !== '' && initialContent !== '') {
+				setAcceptable(true)
+				headerRef.current!.value = initialHeader ?? ''
+				contentRef.current!.value = initialContent ?? ''
+			}
+    }, [setAcceptable])
 
     const handleInnerDivClick = useCallback((event: MouseEvent) => {
       event.stopPropagation()
@@ -92,7 +95,7 @@ const TaskWindowExposed = forwardRef<ContentHandle, TaskWindowProps>(
         dispatch(getAction())
         backNavigate()
       },
-      [backNavigate, dispatch],
+      [backNavigate, dispatch, getAction],
     )
 
     useImperativeHandle(ref, () => {

@@ -39,6 +39,7 @@ export const taskSlice = createSlice({
 })
 
 type SliceActions<T> = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [K in keyof T]: T[K] extends (...args: any[]) => infer A ? A : never
 }[keyof T]
 

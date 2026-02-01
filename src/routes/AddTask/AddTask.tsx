@@ -12,9 +12,7 @@ const AddTask = () => {
     })
   }, [])
 
-  return (
-    <TaskWindowExposed ref={ref} getAction={getAction} initialContent="hey" />
-  )
+  return <TaskWindowExposed ref={ref} getAction={getAction} />
 }
 
 export default AddTask
